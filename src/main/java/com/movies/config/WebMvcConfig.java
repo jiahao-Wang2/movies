@@ -2,22 +2,16 @@ package com.movies.config;
 
 import com.movies.interceptor.UserInterceptor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 
 /*
 * WebMvc的配置类,再此使自定义拦截器注册并生效
 * */
 @Configuration
+@Slf4j
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -25,32 +19,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(userInterceptor);
-    }
-    /*
-    * knife4j配置,用于Controller层的测试
-    * */
-    @Bean
-    public Docket docket(){
-        ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("在线电影")
-                .version("1.0")
-                .description("在线电影项目接口文档")
-                .build();
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("用户端接口")
-                .apiInfo(apiInfo)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.movies.controller"))
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-    /**
-     * 设置静态资源映射
-     */
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
 }
