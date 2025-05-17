@@ -3,4 +3,4 @@ target/
 *.iml
 *.class
 *Test.java
-src/test/
+/src/test/
