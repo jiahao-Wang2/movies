@@ -8,7 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 /*
-* 自定义拦截器,在拦截器中进行用户认证
+* 自定义的拦截器,在拦截器中进行用户认证
 * */
 @Component
 @Slf4j

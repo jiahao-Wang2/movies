@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final UserInterceptor userInterceptor;
-
+    //将自己写的拦截器配置生效
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(userInterceptor);
     }

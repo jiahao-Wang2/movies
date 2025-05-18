@@ -18,7 +18,3 @@ springdoc:
     - group: '在线电影用户端'
       paths-to-match: '/**'
       packages-to-scan: com.movies.controller
-knife4j:
-  enable: true
-  setting:
-    language: zh_cn
